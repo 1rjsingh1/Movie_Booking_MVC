@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "pay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+
+    <h2>Booking Details</h2> <br />
+    <table class="table">
+        <tr>
+            <td style="text-align:center">
+                Movie Name - @Session["moviename"]
+            </td>
+            <td rowspan="6" style="text-align:right">
+                <img src="~/@Url.Content(@ViewBag.image)" style="width:300px;height:300px;">
+            </td>
+
+
+        </tr>
+        <tr>
+            <td style="text-align:center">
+                Theatre - @Session["theatrename"]
+                </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">
+                Date - @DateTime.Today.ToString("dd-MM-yyyy")
+            </td>
+        </tr>
+
+        <tr>
+            <td style="text-align:center">
+                Show Time - @Session["showtime"]
+            </td>
+        </tr>
+       
+
+        <tr>
+            <td style="text-align:center">
+                Seat No -  @ViewBag.select
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">
+                Amount - @Session["total"]
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">
+                <button type="button" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("pay", "paytm") + "'");"> Proceed To Pay</button>
+
+            </td>
+        </tr>
+
+        </table>
+</div>

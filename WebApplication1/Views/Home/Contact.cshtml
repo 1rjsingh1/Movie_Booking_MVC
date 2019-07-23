@@ -1,17 +1,29 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h2>@ViewBag.Title Us</h2>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<script>
+    function make()
+    {
+        document.getElementById("sizingaddon1").value = " ";
+        alert("Resposne Submitted");
+    }
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+</script> 
+<div class="container" style="text-align:center">
+    <div style="margin-left:-150px;">
+        <span id="sizing-addon1" style="font-size:large;">Your Feedback:</span>
+   
+        <textarea rows="4" cols="50" id="sizingaddon1">
+              </textarea>
+        </div>
+
+    <br />
+    <br />
+ 
+   
+    <div style="text-align:center; margin-left:-50px;" class="container">
+        <button type="button" class="btn btn-default" onclick="make()" > Submit </button>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "pay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="text-align:center">
+    <img src="~/images/paytm.png" height="300" width="300" /> <br />
+    <form action="send" id="form" method="post">
+        <label for="mobile" style="font-size:large; font-weight:bold">Mobile number : </label>
+        <input type="tel" pattern="^\d{10}$" id="mobile" required name="Mobile" /> <br /> <br />
+
+
+        <button type="submit" class="btn btn-primary btn-lg" >&nbsp; &nbsp; Pay &nbsp;&nbsp;</button>
+
+        </form>
+</div>
+
+

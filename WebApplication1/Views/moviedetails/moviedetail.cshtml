@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<form method="post" action="Insert1" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="displayn">Movie Name</label>
+        <input type="text" class="form-control" id="displayn"  name="displayn" placeholder="Enter Movie Name">
+         </div>
+
+    <div class="form-group">
+        <label for="image">Example file input</label>
+        <input type="file" class="form-control-file" name="image" id="image">
+    </div>
+    <div class="form-group">
+        <label for="rating">Movie Rating</label>
+        <input type="text" class="form-control" id="rating" name="rating" placeholder="Rating /10">
+    </div>
+    <div class="form-group">
+        <label for="review">Movie Review</label>
+        <textarea class="form-control"  id="review" name="review" placeholder="Enter Movie Review"></textarea>
+       @* <input type="text" class="form-control" id="name" name="name" placeholder="Enter Movie Name">*@
+    </div>
+    @*<div class="form-group">
+        <label for="status">Movie Status</label>
+        <input type="text" class="form-control" id="status" name="status" placeholder="S-Showing U-Upcoming">
+    </div>*@
+    <div class="form-group">
+        <label for="land">Movie Landscape Image</label>
+        <input type="file" class="form-control" id="land"  name="land" >
+         </div>
+    <div class="form-group">
+        <label for="release">Release Date</label>
+        <input type="date" class="form-control" id="release" name="release" placeholder="Enter Release Date">
+    </div>
+    <div class="form-group">
+        <label for="duration">Movie Duration</label>
+        <input type="text" class="form-control" id="duration" name="duration" placeholder="HH:MM">
+    </div>
+    <div class="form-group">
+        <label for="trail">Movie trailer Link</label>
+        <input type="text" class="form-control" id="trail" name="trail" placeholder="Enter Trailer Link">
+    </div>
+    <div class="form-group">
+        <label for="genre">Movie Genre</label>
+        <input type="text" class="form-control" id="genre" name="genre" placeholder="Action/ Romance/ Drama">
+    </div>
+    <div class="form-group">
+        <label for="age">Movie Adult Rating</label>
+        <input type="text" class="form-control" id="age" name="age" placeholder="A/ UA">
+    </div>
+    <div class="form-group">
+        <label for="actors">Movie Lead Actors</label>
+        <input type="text" class="form-control" id="actors" name="actors" placeholder="Enter Lead Cast">
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-2">
+            <label class="label" style="color:black;">@ViewBag.DuplicateMessage</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+

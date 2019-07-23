@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Admin</h2>
+<table class="table">
+    <tr>
+        <td style="font-size:large; text-align:center" valign="bottom">
+            Add new Movie
+        </td>
+        <td >
+            <button type="button" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("insert", "moviedetails") + "'");"> Click here</button>
+
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:large; text-align:center" valign="bottom">
+            Add Show
+        </td>
+        <td>
+            <button type="button" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("add", "show") + "'");"> Click here</button>
+
+        </td>
+    </tr>
+</table>
+

@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "pay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.57/pdfmake.min.js"></script>
+<script type="text/javascript">
+        function Export() {
+            html2canvas(document.getElementById('ticket_display'), {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("Ticket.pdf");
+                }
+            });
+        }
+</script>
+<div class="container" id="customers">
+    
+    
+    <table class="table" id="ticket_display">
+        <tr>
+            <td colspan="2" style="text-align:center"><h2>Booking Details</h2>
+            
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">
+                Movie Name - @Session["moviename"]
+            </td>
+            <td rowspan="8" style="text-align:right">
+                <img src="~/@Url.Content(@ViewBag.image)" style="width:300px;height:300px;">
+            </td>
+
+
+        </tr>
+        <tr>
+            <td style="text-align:center">
+                Theatre - @Session["theatrename"]
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">
+                Date - @DateTime.Today.ToString("dd-MM-yyyy")
+            </td>
+        </tr>
+
+        <tr>
+            <td style="text-align:center">
+                Show Time - @Session["showtime"]
+            </td>
+        </tr>
+
+
+        <tr>
+            <td style="text-align:center">
+                Seat No -  @ViewBag.select
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">
+                Amount - @Session["total"]
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">
+               Payment Successfull✓
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">
+                Booking Id - @Session["bookid"]
+            </td>
+        </tr>
+       
+
+    </table>
+    <div style="text-align:center" class="container">
+        <button type="button" class="btn btn-default" onclick="Export()"> Print Ticket</button>
+    </div>
+
+</div>

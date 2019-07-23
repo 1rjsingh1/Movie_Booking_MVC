@@ -1,0 +1,237 @@
+﻿
+@{
+    ViewBag.Title = "seats";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+
+    <h2>Executive Class</h2> <p id="exbill"></p>
+    <table class="table">
+       @{ int i;}
+        <tr>
+
+            <td>
+                EX: &nbsp;
+                @for (i = 1; i <= (ViewBag.exec / 2); i++)
+                {
+                    if (!ViewBag.booked.Contains(i))
+                    {
+                        @*<button style="background-color:whitesmoke; border-width:0px; height: 50px; width:50px; text-align:center; " >*@<img id="tag:@i" onclick="changeeImage(@i)" title="Available" style="cursor:pointer; height:50px; width:50px;" src="~/images/exec.png" />@*</button>*@
+                    }
+                    else
+                    {
+
+                        <img id="tag:@i"  title="Booked"  style="cursor:not-allowed; height:50px; width:50px;" src="~/images/booked.png" />
+                    }
+                    @i;
+
+                    @:&nbsp;
+
+                }
+            </td>
+
+                <td>
+                    @for (; i <= (ViewBag.exec); i++)
+                    {
+
+                        if (!ViewBag.booked.Contains(i))
+                        {
+                            @*<button style="background-color:whitesmoke; border-width:0px; height: 50px; width:50px; text-align:center; " >*@<img id="tag:@i" onclick="changeeImage(@i)" title="Available" style="cursor:pointer; height:50px; width:50px;" src="~/images/exec.png" />@*</button>*@
+                        }
+                        else
+                        {
+                            <img id="tag:@i" title="Booked" style="cursor:not-allowed; height:50px; width:50px;" src="~/images/booked.png" />
+                        }
+                        @i;
+                        @:&nbsp;
+
+
+
+                    }
+                    </td>
+
+
+</tr>
+    </table>
+
+    <br />
+    <h2>Regular Class</h2>
+    <p id="rbill"></p>
+    <table class="table">
+        @{ char a = 'A';}
+        @for (; i <= (ViewBag.exec + ViewBag.reg);)
+        {
+            <tr>
+                @{ int l = 5;}
+                <td>
+    @a
+    : &nbsp;
+    @while (l > 0 && i <= (ViewBag.exec + ViewBag.reg))
+    {
+        if (!ViewBag.booked.Contains(i))
+        {
+            <input id="tag:@i" title="Available" onclick="changerImage(@i)" type="image" src="~/images/reg.png" style="height:30px; width:30px;" />
+        }
+        else
+        {
+            <img id="tag:@i"  title="Booked" style="cursor:not-allowed; height:30px; width:30px;" src="~/images/booked.png" />
+
+        }@i;
+            @:&nbsp;
+                        i = i + 1;
+                        l = l - 1;
+                    }
+            </td>
+                @{ l = 5;}
+                <td>
+                    @while (l > 0 && i <= (ViewBag.exec + ViewBag.reg))
+                    {
+                        if (!ViewBag.booked.Contains(i))
+                        {
+                            <input id="tag:@i" title="Available" onclick="changerImage(@i)" type="image" src="~/images/reg.png" style="height:30px; width:30px;" />
+                        }
+                        else
+                        {
+                            <img id="tag:@i" title="Booked" style="cursor:not-allowed; height:30px; width:30px;" src="~/images/booked.png" />
+
+                        }@i;
+                        @:&nbsp;
+                        i = i + 1;
+                        l = l - 1;
+                    }
+
+                </td>
+            </tr>
+             a++; 
+                }
+        <tr >
+            <td colspan="2" style="text-align:center">
+                Screen towards this side <br /> <p style="font-size:x-large; font-weight:500">⇓</p> <hr style=" border: 10px solid pink;
+  border-radius: 5px;" size="20" />
+            </td>
+        </tr>
+        <tr style="width:100%">
+            <td style="text-align:center" colspan="2">
+               <p id="tbill"></p> <button type="button" id="final1" name="final1"  onclick="send()" class="btn btn-default">Checkout</button>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    var arr = [];
+    var z='global';
+    z = 0;
+    var ex = 0;
+    var r = 0;
+    function changeeImage(i) {
+
+                    sr = "tag:" + i;
+            console.log(z);
+
+            if (document.getElementById(sr).src == "http://localhost:37346/images/exec.png")
+            {
+                z = z + 1;
+                ex = ex + 1;
+                if(z>5){
+                    z = z - 1;
+                    ex = ex - 1;
+
+                    alert("Sorry, Can't Select more than 5 seats");
+                }
+                else {
+                    arr.push(i);
+                    console.log(sr);
+                    document.getElementById(sr).src = "/images/selectexec.png";
+                    console.log(document.getElementById(sr).src);
+                }
+            }
+            else
+            {
+                ex = ex - 1;
+                var pos = arr.indexOf(i);
+                arr.splice(pos, 1);
+                z=z-1;
+                document.getElementById(sr).src = "/images/exec.png";
+            }
+        if(ex!=0)
+            document.getElementById("exbill").innerHTML = ex + " x 300 = ₹" + (ex * 300);
+            else
+            document.getElementById("exbill").innerHTML = "";
+        if(ex!=0 || r!=0)
+            document.getElementById("tbill").innerHTML = "Pay ₹" + ((ex*300 + r*200));
+        else
+            document.getElementById("tbill").innerHTML = "";
+
+
+
+
+    }
+
+    function changerImage(i) {
+
+
+            sr = "tag:" + i;
+            console.log(z);
+
+            if (document.getElementById(sr).src == "http://localhost:37346/images/reg.png")
+            {
+                r = r + 1;
+                z=z+1;
+                if (z > 5) {
+                    r = r - 1;
+                    z=z-1;
+                    alert("Sorry, Can't Select more than 5 seats");
+                }
+                else {
+                    arr.push(i);
+                    console.log(sr);
+                    document.getElementById(sr).src = "/images/selectreg.png";
+                    console.log(document.getElementById(sr).src);
+                }
+            }
+            else
+            {
+                r = r - 1;
+                var pos = arr.indexOf(i);
+                arr.splice(pos, 1);
+                z=z-1;
+                document.getElementById(sr).src = "/images/reg.png";
+            }
+            if (r != 0)
+                document.getElementById("rbill").innerHTML = r + " x 200 = ₹" + (r * 200);
+            else
+                document.getElementById("rbill").innerHTML = "";
+            if (ex != 0 || r != 0)
+                document.getElementById("tbill").innerHTML = "Pay ₹" + ((ex*300 + r*200));
+            else
+                document.getElementById("tbill").innerHTML = "";
+
+    }
+    function send()
+    {
+        var sum = ex * 300 + r * 200;
+        console.log("Here");
+        var a = "";
+        for (i in arr)
+            a = a + arr[i] + ',';
+        window.location.href = "/seats/book?sel=" + a+"&total="+sum;
+        @*$.ajax({
+            type: "POST",
+            dataType: "json",
+            url:'@Url.Action("book", "seats")',
+    traditional: true,
+   
+    data: { arr: ["book1", "book2"] },
+    error: function (a) {
+        alert(a);
+    }
+    });*@
+
+    }
+
+</script>
